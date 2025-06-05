@@ -84,14 +84,18 @@ def update():
 
 def pull(args):
     update()
-    name = args.config_name
-    if name == "all":
-        for name in get_config():
-            pull(Namespace(config_name=name))
-        return
-    config = get_config().get(name, None)
+    config_name = args.config_name
+    if config_name == "all":
+        for config_name in get_config():
+            pull_one(config_name)    
+    else:
+        pull_one(config_name)
+
+
+def pull_one(config_name):
+    config = get_config().get(config_name, None)
     if config is None:
-        print(f"Config with name {name} not found!")
+        print(f"Config with name {config_name} not found!")
         exit(1)
     curr_path, dest_path = get_paths(config)
     if os.path.isdir(curr_path):
@@ -100,20 +104,25 @@ def pull(args):
         with open(curr_path, "r") as curr_file:
             with open(dest_path, "w") as dest_file:
                 dest_file.write(curr_file.read())
-
     print(f"Copied from {curr_path} to {dest_path}")
+
 
 
 def push(args):
     update()
-    name = args.config_name
-    if name == "all":
-        for name in get_config():
-            push(Namespace(config_name=name))
-        return
-    config = get_config().get(name, None)
+    config_name = args.config_name
+    if config_name == "all":
+        for config_name in get_config():
+            push_one(config_name)
+    else:
+        push_one(args.config_name)
+    
+    git_push()
+
+def push_one(config_name):
+    config = get_config().get(config_name, None)
     if config is None:
-        print(f"Config with name {name} not found!")
+        print(f"Config with name {config_name} not found!")
         exit(1)
     curr_path, dest_path = get_paths(config)
     if os.path.isdir(dest_path):
@@ -122,10 +131,11 @@ def push(args):
         with open(dest_path, "r") as dest_file:
             with open(curr_path, "w") as curr_file:
                 curr_file.write(dest_file.read())
-
     git_add(curr_path)
-    git_commit(name)
-    git_push()
+    git_commit(config_name)
+
+
+
 
 
 if __name__ == "__main__":
