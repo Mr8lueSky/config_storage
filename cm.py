@@ -5,7 +5,7 @@ import os
 import shutil
 import sys
 from pathlib import Path
-from subprocess import CalledProcessError, check_output
+from subprocess import check_output
 
 GIT_CURR_HASH_LIST = ["git", "rev-parse", "HEAD"]
 GIT_PULL = "git pull"
@@ -30,8 +30,6 @@ def get_config():
     with open(CONFIGS_PATH, "r") as file:
         return json.load(file)
 
-def git_checkout_head():
-    cmd = os.popen()
 
 def get_curr_git_hash():
     return str(check_output(GIT_CURR_HASH_LIST), encoding="utf-8")[:-1]
@@ -86,6 +84,10 @@ def update():
 def pull(args):
     update()
     name = args.config_name
+    if name == "all":
+        for name in get_config():
+            pull(name)
+        return
     config = get_config().get(name, None)
     if config is None:
         print(f"Config with name {name} not found!")
@@ -98,6 +100,10 @@ def pull(args):
 def push(args):
     update()
     name = args.config_name
+    if name == "all":
+        for name in get_config():
+            push(name)
+        return
     config = get_config().get(name, None)
     if config is None:
         print(f"Config with name {name} not found!")
@@ -126,7 +132,6 @@ if __name__ == "__main__":
     push_parser.set_defaults(func=push)
 
     args = parser.parse_args()
-    print(args)
     if not vars(args):
         parser.print_help()
     else:
