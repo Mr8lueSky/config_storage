@@ -94,7 +94,13 @@ def pull(args):
         print(f"Config with name {name} not found!")
         exit(1)
     curr_path, dest_path = get_paths(config)
-    shutil.copytree(curr_path, dest_path, dirs_exist_ok=True)
+    if os.path.isdir(curr_path):
+        shutil.copytree(curr_path, dest_path, dirs_exist_ok=True)
+    else:
+        with open(curr_path, "r") as curr_file:
+            with open(dest_path, "w") as dest_file:
+                dest_file.write(curr_file.read())
+
     print(f"Copied from {curr_path} to {dest_path}")
 
 
@@ -110,7 +116,7 @@ def push(args):
         print(f"Config with name {name} not found!")
         exit(1)
     curr_path, dest_path = get_paths(config)
-    if os.path.isdir(curr_path):
+    if os.path.isdir(dest_path):
         shutil.copytree(dest_path, curr_path, dirs_exist_ok=True)
     else:
         with open(dest_path, "r") as dest_file:
