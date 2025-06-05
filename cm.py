@@ -4,6 +4,7 @@ import json
 import os
 import shutil
 import sys
+from argparse import Namespace
 from pathlib import Path
 from subprocess import check_output
 
@@ -86,7 +87,7 @@ def pull(args):
     name = args.config_name
     if name == "all":
         for name in get_config():
-            pull(name)
+            pull(Namespace(config_name=name))
         return
     config = get_config().get(name, None)
     if config is None:
@@ -102,14 +103,20 @@ def push(args):
     name = args.config_name
     if name == "all":
         for name in get_config():
-            push(name)
+            push(Namespace(config_name=name))
         return
     config = get_config().get(name, None)
     if config is None:
         print(f"Config with name {name} not found!")
         exit(1)
     curr_path, dest_path = get_paths(config)
-    shutil.copytree(dest_path, curr_path, dirs_exist_ok=True)
+    if os.path.isdir(curr_path):
+        shutil.copytree(dest_path, curr_path, dirs_exist_ok=True)
+    else:
+        with open(dest_path, "r") as dest_file:
+            with open(curr_path, "w") as curr_file:
+                curr_file.write(dest_file.read())
+
     git_add(curr_path)
     git_commit(name)
     git_push()
