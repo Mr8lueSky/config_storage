@@ -1,0 +1,6 @@
+{
+	"nvim": {
+		"dest_path": "~/.config/nvim",
+		"path": "nvim"
+	}
+}
