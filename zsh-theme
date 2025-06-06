@@ -35,7 +35,7 @@ git_prompt() {
   fi
 }
 
-local smiley='%(?.%F{green}☺%f.%F{red}☹%f)'
+local smiley='%(?.%F{green}+%f.%F{red}-%f)'
 
 PROMPT='
 (`basename ${VIRTUAL_ENV}%`) %~
