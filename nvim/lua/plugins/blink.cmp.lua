@@ -28,6 +28,8 @@ return {
 		keymap = {
 			preset = "default",
 			["<Tab>"] = { "select_and_accept", 'fallback' },
+			['<C-Tab>'] = { 'select_prev', 'fallback' },
+			['<S-Tab>'] = { 'select_next', 'fallback' },
 		},
 
 		appearance = {
