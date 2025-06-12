@@ -15,5 +15,12 @@ vim.cmd("nnoremap <M-j> <C-w>j")
 vim.cmd("nnoremap <M-k> <C-w>k")
 vim.cmd("nnoremap <M-l> <C-w>l")
 
--- jj to enter visual mode from insert
-vim.keymap.set('i', 'jj', '<Esc>', {noremap = true})
+-- jk to enter visual mode from insert
+vim.keymap.set('i', 'jk', '<Esc>', {noremap = true})
+
+-- ctrl + k and ctrl + j to page up/down
+vim.cmd("nnoremap <C-j> <PageDown>")
+vim.cmd("nnoremap <C-k> <PageUp>")
+
+-- paste without yanking
+vim.cmd('vnoremap <leader>o "_dp')
