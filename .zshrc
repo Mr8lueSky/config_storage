@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
+# nvm
+source /usr/share/nvm/init-nvm.sh
 # Shortcut to change config
-alias nvimc="CURR=$(pwd); cd ~/.config/nvim; nvim .; cd $CURR"
+alias nvimc='export CURR=$(pwd); cd ~/.config/nvim; nvim .; cd $CURR'
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 autoload -Uz history-beginning-search-menu
@@ -96,7 +97,8 @@ bindkey '^[[B' history-substring-search-down
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
+unsetopt inc_append_history
+unsetopt share_history
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
