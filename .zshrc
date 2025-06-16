@@ -13,7 +13,7 @@ bindkey '^X^X' history-beginning-search-menu
 bindkey '^H' backward-kill-word
 bindkey '5~' kill-word
 # copy current command
-cmd_to_clip () { wl-copy <<< $BUFFER }
+cmd_to_clip () { termux-clipboard-set <<< $BUFFER }
 zle -N cmd_to_clip
 bindkey '^Y' cmd_to_clip
 # Set name of the theme to load --- if set to "random", it will
