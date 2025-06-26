@@ -19,6 +19,10 @@
                 "dest_path": "~/.zshrc",
                 "path": ".zshrc"
         },
+        "kitty": {
+                "dest_path": "~/.config/kitty",
+                "path": "kitty"
+        },
         "zsh_theme": {
                 "dest_path": "~/.oh-my-zsh/themes/peepcode.zsh-theme",
                 "path": "zsh-theme"
