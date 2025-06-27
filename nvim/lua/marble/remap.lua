@@ -26,12 +26,20 @@ vim.cmd('vnoremap <leader>o "_dp')
 -- Exit terminal on ctrl + x
 vim.cmd(":tnoremap <C-x> <C-\\><C-n>")
 
+vim.keymap.set("n", "<leader>th", function()
+    local win_id = vim.api.nvim_get_current_win();
+    vim.cmd(":split")
+    vim.api.nvim_set_current_win(win_id)
+    vim.cmd(":terminal")
+    vim.api.nvim_win_set_height(win_id, 15)
+end)
 
-vim.keymap.set("n", "<leader>th", function ()
-	local win_id = vim.api.nvim_get_current_win();
-	vim.cmd(":split")
-	vim.api.nvim_set_current_win(win_id)
-	vim.cmd(":terminal")
-	vim.api.nvim_win_set_height(win_id, 15)
+vim.keymap.set("n", "<leader>te", function()
+    local win_id = vim.api.nvim_get_current_win();
+    local cmd = vim.fn.input("Cmd: ", "", "shellcmd");
+    local cmd_vim = string.format(":terminal %s", cmd);
+    vim.cmd(":vsplit")
+    vim.api.nvim_set_current_win(win_id)
+    vim.cmd(cmd_vim)
 end)
 
