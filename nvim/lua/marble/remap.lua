@@ -34,6 +34,12 @@ vim.keymap.set("n", "<leader>th", function()
     vim.cmd(":terminal")
     vim.api.nvim_win_set_height(win_id, 15)
 end)
+vim.keymap.set("n", "<leader>tv", function()
+    local win_id = vim.api.nvim_get_current_win();
+    vim.cmd(":vsplit")
+    vim.api.nvim_set_current_win(win_id)
+    vim.cmd(":terminal")
+end)
 
 -- Execute cmd in vertical terminal on space + t + e
 vim.keymap.set("n", "<leader>te", function()
@@ -52,10 +58,14 @@ vim.keymap.set("n", "<C-M-L>", function() vim.cmd(":vertical resize +5") end)
 vim.keymap.set("n", "<C-M-H>", function() vim.cmd(":vertical resize -5") end)
 
 -- Open diagnostic message on [] - o
-local open_diagnostic = function ()
-	vim.diagnostic.open_float()
-	vim.diagnostic.open_float()
+local open_diagnostic = function()
+    vim.diagnostic.open_float()
+    vim.diagnostic.open_float()
 end
 vim.keymap.set("n", "[o", open_diagnostic)
 vim.keymap.set("n", "]o", open_diagnostic)
+
+-- Show all diagnostic messages in quickfix menu for current file
+vim.keymap.set("n", "[r", vim.diagnostic.setloclist)
+vim.keymap.set("n", "]r", vim.diagnostic.setloclist)
 
