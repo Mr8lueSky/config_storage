@@ -23,7 +23,8 @@ bindkey '^Y' cmd_to_clip
 ZSH_THEME="peepcode"
 
 # from default
-
+# init zoxide
+eval "$(zoxide init zsh)"
 # Use history substring search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
