@@ -65,7 +65,11 @@ end
 vim.keymap.set("n", "[o", open_diagnostic)
 vim.keymap.set("n", "]o", open_diagnostic)
 
--- Show all diagnostic messages in quickfix menu for current file
-vim.keymap.set("n", "[r", vim.diagnostic.setloclist)
-vim.keymap.set("n", "]r", vim.diagnostic.setloclist)
+-- Show diagnostic messages in quickfix menu for current file
+vim.keymap.set("n", "[re", function () vim.diagnostic.setloclist({severity=vim.diagnostic.severity.ERROR}) end)
+vim.keymap.set("n", "]re", function () vim.diagnostic.setloclist({severity=vim.diagnostic.severity.ERROR}) end)
+
+vim.keymap.set("n", "[rd", vim.diagnostic.setloclist)
+vim.keymap.set("n", "]rd", vim.diagnostic.setloclist)
+
 
