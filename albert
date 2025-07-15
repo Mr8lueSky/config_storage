@@ -1,0 +1,52 @@
+[General]
+hotkey=Ctrl+Shift+R
+telemetry=false
+
+[applications]
+enabled=true
+
+[calculator_qalculate]
+enabled=true
+
+[chromium]
+enabled=true
+
+[docs]
+enabled=false
+
+[files]
+enabled=false
+
+[path]
+enabled=false
+
+[system]
+command_lock=loginctl lock-session
+command_poweroff=\nsystemctl poweroff
+command_reboot=systemctl reboot
+enabled=true
+hibernate_enabled=false
+lock_enabled=true
+logout_enabled=false
+suspend_enabled=false
+
+[urlhandler]
+enabled=true
+
+[websearch]
+enabled=true
+
+[widgetsboxmodel]
+alwaysOnTop=true
+clearOnHide=false
+clientShadow=true
+darkTheme=Default Dark
+displayScrollbar=false
+followCursor=true
+hideOnFocusLoss=true
+historySearch=true
+itemCount=5
+lightTheme=Default Dark
+quitOnClose=false
+showCentered=true
+systemShadow=true
