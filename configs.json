@@ -27,4 +27,8 @@
                 "dest_path": "~/.oh-my-zsh/themes/peepcode.zsh-theme",
                 "path": "zsh-theme"
         }
+	"albert": {
+		"dest_path": "~/.config/albert/config",
+		"path": "albert"
+	}
 }
