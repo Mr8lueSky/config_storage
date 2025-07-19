@@ -128,3 +128,6 @@ unsetopt share_history
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# opencode
+export PATH=/home/marblesky/.opencode/bin:$PATH
