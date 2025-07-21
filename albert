@@ -4,6 +4,7 @@ telemetry=false
 
 [applications]
 enabled=true
+use_exec=false
 
 [calculator_qalculate]
 enabled=true
