@@ -1,33 +1,16 @@
 -- LSPs
-local lspconfig = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("basedpyright")
-
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-require("lspconfig").cssls.setup({capabilities = capabilities})
-
-lspconfig.emmet_ls.setup({
-    -- on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = {
-        "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass",
-        "scss", "svelte", "pug", "typescriptreact", "vue"
-    },
-    init_options = {
-        html = {
-            options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-                ["bem.enabled"] = true
-            }
-        }
+vim.lsp.config('basedpyright', {
+    root_markers = {
+        "pyproject.toml", "setup.py", "setup.cfg", "pyrightconfig.json", ".git"
     }
 })
 
-vim.lsp.enable("emmet_ls")
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Keybinds
 vim.diagnostic.config({jump = {float = true}})
@@ -57,4 +40,10 @@ vim.keymap.set("n", "]g",
 -- Show giagnostic messages
 vim.keymap.set("n", "<leader>l", vim.diagnostic.setloclist)
 
+-- Next/Previous quick fix
+vim.keymap.set("n", "<CM-l>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<CM-h>", "<cmd>cprevious<CR>")
+
+
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+

@@ -1,3 +1,1 @@
-return {
-	'sbdchd/neoformat'
-}
+return {'sbdchd/neoformat'}
