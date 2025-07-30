@@ -25,6 +25,23 @@ ZSH_THEME="peepcode"
 # from default
 # init zoxide
 eval "$(zoxide init zsh)"
+# zoxide autocompletion
+_zoxide_zsh_tab_completion() {
+    (( $+compstate )) && compstate[insert]=menu
+    local keyword="${words:2}"
+    local completions=(${(@f)"$(zoxide query -l "$keyword")"})
+
+
+    if [[ ${#completions[@]} == 0 ]]; then
+        _files -/
+    else
+        compadd -U -V z "${(@)completions}"
+    fi
+}
+
+if [ "${+functions[compdef]}" -ne 0 ]; then
+    compdef _zoxide_zsh_tab_completion z 2> /dev/null
+fi
 # Use history substring search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 
