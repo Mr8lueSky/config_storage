@@ -1,7 +1,9 @@
 -- LSPs
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-vim.lsp.enable("ts_ls")
+-- vim.lsp.enable("ts_ls")
+vim.lsp.config("ts_ls",
+               {workspace_required = true, root_markers = {"package.json"}})
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("basedpyright")
 vim.lsp.config('basedpyright', {
@@ -41,9 +43,8 @@ vim.keymap.set("n", "]g",
 vim.keymap.set("n", "<leader>l", vim.diagnostic.setloclist)
 
 -- Next/Previous quick fix
-vim.keymap.set("n", "<CM-l>", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<CM-h>", "<cmd>cprevious<CR>")
-
+vim.keymap.set("n", "<A-L>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<A-H>", "<cmd>cprevious<CR>")
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
