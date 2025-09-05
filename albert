@@ -1,5 +1,5 @@
 [General]
-hotkey=Ctrl+Shift+R
+hotkey=Ctrl+Alt+Num+Right
 telemetry=false
 
 [applications]
@@ -28,7 +28,7 @@ command_reboot=systemctl reboot
 enabled=true
 hibernate_enabled=false
 lock_enabled=true
-logout_enabled=false
+logout_enabled=true
 suspend_enabled=false
 
 [urlhandler]
