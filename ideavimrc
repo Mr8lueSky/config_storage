@@ -1,0 +1,25 @@
+let mapleader = " "
+
+imap jk <Esc>
+set clipboard=unnamedplus
+
+" move between windows
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+
+" page up/down on ctrl + j/k
+nnoremap <C-j> <PageDown>
+nnoremap <C-k> <PageUp>
+
+" show usages
+nmap grr <Action>(ShowUsages)
+
+" quit window
+nnoremap <C-q> :q<ENTER>
+
+" goto file
+map <leader>pf <action>(GotoFile)
+
+
