@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 # nvm
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 # Shortcut to change config
 alias nvimc='export CURR=$(pwd); cd ~/.config/nvim; nvim .; cd $CURR'
 # Path to your Oh My Zsh installation.
@@ -42,10 +42,7 @@ _zoxide_zsh_tab_completion() {
 if [ "${+functions[compdef]}" -ne 0 ]; then
     compdef _zoxide_zsh_tab_completion z 2> /dev/null
 fi
-# Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
