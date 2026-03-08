@@ -72,4 +72,5 @@ vim.keymap.set("n", "]re", function () vim.diagnostic.setloclist({severity=vim.d
 vim.keymap.set("n", "[rd", vim.diagnostic.setloclist)
 vim.keymap.set("n", "]rd", vim.diagnostic.setloclist)
 
-
+-- Code actions
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
