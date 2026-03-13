@@ -1,5 +1,14 @@
-local default_ollama_model = "llama3.2:3b"
-local ollama_adapter = {adapter = 'ollama', model = default_ollama_model}
+if os.getenv("MODEL") then
+    OLLAMA_MODEL = os.getenv("MODEL")
+else
+    OLLAMA_MODEL = 'llama3.2:3b'
+end
+
+if os.getenv("OLLAMA_HOST") then
+    OLLAMA_HOST = os.getenv("OLLAMA_HOST")
+else
+    OLLAMA_HOST = "0.0.0.0"
+end
 
 local explain_code = {
     interaction = "chat",
@@ -54,6 +63,7 @@ local write_docstring = {
         }
     }
 }
+
 require("codecompanion").setup({
     prompt_library = {
         markdown = {
@@ -63,26 +73,30 @@ require("codecompanion").setup({
         ["Bash command"] = bash_command,
         ["Write docstring"] = write_docstring
     },
-    -- adapters = {chat = ollama, inline = ollama, actions = ollama},
-    -- interaction = {chat = ollama, inline = ollama, actions = ollama}
-    strategies = {
-        inline = ollama_adapter,
-        chat = ollama_adapter,
-        cmd = ollama_adapter
-    },
     adapters = {
-        ollama_llama = function()
-            return require('codecompanion.adapters').extend('ollama', {
-                name = 'ollama_llama', -- Give this adapter a different name to differentiate it from the default ollama adapter
-                schema = {model = {default = default_ollama_model}}
-            })
-        end
+        http = {
+            ollama = function()
+                return require("codecompanion.adapters").extend("ollama", {
+                    env = {url = "http://" .. OLLAMA_HOST .. ":11434"},
+                    parameters = {sync = true}
+                })
+            end
+        }
     },
-    opts = {log_level = 'DEBUG'},
     interactions = {
-        inline = ollama_adapter,
-        chat = ollama_adapter,
-        cmd = ollama_adapter
+        chat = {
+            -- You can specify an adapter by name and model (both ACP and HTTP)
+            adapter = {name = "ollama", model = OLLAMA_MODEL}
+        },
+        -- Or, just specify the adapter by name
+        inline = {
+            -- You can specify an adapter by name and model (both ACP and HTTP)
+            adapter = {name = "ollama", model = OLLAMA_MODEL}
+        },
+        cmd = {
+            -- You can specify an adapter by name and model (both ACP and HTTP)
+            adapter = {name = "ollama", model = OLLAMA_MODEL}
+        }
     },
     display = {
         diff = {
@@ -97,6 +111,25 @@ require("codecompanion").setup({
         }
     }
 })
+
+-- require("codecompanion").setup({
+--     -- adapters = {chat = ollama, inline = ollama, actions = ollama},
+--     -- interaction = {chat = ollama, inline = ollama, actions = ollama}
+--     strategies = {inline = ollama, chat = ollama, cmd = ollama},
+--     adapters = {
+--         ollama_llama = function()
+--             return require('codecompanion.adapters').extend('ollama', {
+--                 name = 'ollama_llama', -- Give this adapter a different name to differentiate it from the default ollama adapter
+--                 schema = {model = {default = default_ollama_model}}
+--             })
+--         end
+--     },
+--     interactions = {
+--         inline = ollama_interactions,
+--         chat = ollama_interactions,
+--         cmd = ollama_interactions
+--     },
+-- })
 
 -- Example keymaps
 vim.keymap.set('n', '<leader>ah', '<cmd>CodeCompanionChat Toggle<cr>',
