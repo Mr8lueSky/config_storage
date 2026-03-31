@@ -1,4 +1,5 @@
-local default_ollama_model = "llama3.2:3b"
+-- local default_ollama_model = "qwen3-coder:480b-cloud"
+local default_ollama_model = "gpt-oss:120b-cloud"
 local ollama_adapter = {adapter = 'ollama', model = default_ollama_model}
 
 local explain_code = {

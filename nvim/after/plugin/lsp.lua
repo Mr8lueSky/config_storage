@@ -43,8 +43,26 @@ vim.keymap.set("n", "]g",
 vim.keymap.set("n", "<leader>l", vim.diagnostic.setloclist)
 
 -- Next/Previous quick fix
-vim.keymap.set("n", "<A-L>", "<cmd>lne<CR>")
-vim.keymap.set("n", "<A-H>", "<cmd>lp<CR>")
+vim.keymap.set("n", "<C-S-L>", function () 
+	pcall(
+		vim.cmd,
+		"cnext"
+	)
+	pcall(
+		vim.cmd,
+		"lne"
+	)
+end)
+vim.keymap.set("n", "<leader>pp", function () 
+	pcall(
+		vim.cmd,
+		"cprevious"
+	)
+	pcall(
+		vim.cmd,
+		"lp"
+	)
+end)
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
