@@ -3,6 +3,10 @@
     "dest_path": "~/.config/nvim",
     "path": "nvim"
   },
+  "zprofile": {
+    "dest_path": "~/.zprofile",
+    "path": "zprofile"
+  },
   "hyprland": {
     "dest_path": "~/.config/hypr/",
     "path": "hyprland"

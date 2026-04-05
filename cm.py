@@ -92,6 +92,10 @@ def pull(args):
         pull_one(config_name)
 
 
+def ignore_files(src: str, names: list[str]):
+    return [name for name in names if ".git" in name]
+
+
 def pull_one(config_name):
     config = get_config().get(config_name, None)
     if config is None:
@@ -99,7 +103,7 @@ def pull_one(config_name):
         exit(1)
     curr_path, dest_path = get_paths(config)
     if os.path.isdir(curr_path):
-        shutil.copytree(curr_path, dest_path, dirs_exist_ok=True)
+        shutil.copytree(curr_path, dest_path, dirs_exist_ok=True, ignore=ignore_files)
     else:
         with open(curr_path, "r") as curr_file:
             with open(dest_path, "w") as dest_file:
@@ -125,8 +129,10 @@ def push_one(config_name):
         print(f"Config with name {config_name} not found!")
         exit(1)
     curr_path, dest_path = get_paths(config)
+    if not os.path.exists(dest_path):
+        return
     if os.path.isdir(dest_path):
-        shutil.copytree(dest_path, curr_path, dirs_exist_ok=True)
+        shutil.copytree(dest_path, curr_path, dirs_exist_ok=True, ignore=ignore_files)
     else:
         with open(dest_path, "r") as dest_file:
             with open(curr_path, "w") as curr_file:
