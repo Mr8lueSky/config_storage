@@ -1,6 +1,19 @@
 -- local default_ollama_model = "qwen3-coder:480b-cloud"
-local default_ollama_model = "gpt-oss:120b-cloud"
-local ollama_adapter = {adapter = 'ollama', model = default_ollama_model}
+
+if os.getenv("MODEL") then
+    OLLAMA_MODEL = os.getenv("MODEL")
+else
+    OLLAMA_MODEL = "gpt-oss:120b-cloud"
+    -- OLLAMA_MODEL = "glm-5:cloud"
+end
+
+
+if os.getenv("OLLAMA_HOST") then
+    OLLAMA_HOST = os.getenv("OLLAMA_HOST")
+else
+    OLLAMA_HOST = "0.0.0.0"
+end
+
 
 local explain_code = {
     interaction = "chat",
@@ -66,25 +79,35 @@ require("codecompanion").setup({
     },
     -- adapters = {chat = ollama, inline = ollama, actions = ollama},
     -- interaction = {chat = ollama, inline = ollama, actions = ollama}
-    strategies = {
-        inline = ollama_adapter,
-        chat = ollama_adapter,
-        cmd = ollama_adapter
+    interactions = {
+        chat = {
+            -- You can specify an adapter by name and model (both ACP and HTTP)
+            adapter = {name = "ollama", model = OLLAMA_MODEL}
+        },
+        -- Or, just specify the adapter by name
+        inline = {
+            -- You can specify an adapter by name and model (both ACP and HTTP)
+            adapter = {name = "ollama", model = OLLAMA_MODEL}
+        },
+        cmd = {
+            -- You can specify an adapter by name and model (both ACP and HTTP)
+            adapter = {name = "ollama", model = OLLAMA_MODEL}
+        }
+    },
+    chat = {
+      show_settings = true, -- Shows the model and adapter in the chat buffer
     },
     adapters = {
-        ollama_llama = function()
-            return require('codecompanion.adapters').extend('ollama', {
-                name = 'ollama_llama', -- Give this adapter a different name to differentiate it from the default ollama adapter
-                schema = {model = {default = default_ollama_model}}
-            })
-        end
+        http = {
+            ollama = function()
+                return require("codecompanion.adapters").extend("ollama", {
+                    env = {url = "http://" .. OLLAMA_HOST .. ":11434"},
+                    parameters = {sync = true}
+                })
+            end
+        }
     },
     opts = {log_level = 'DEBUG'},
-    interactions = {
-        inline = ollama_adapter,
-        chat = ollama_adapter,
-        cmd = ollama_adapter
-    },
     display = {
         diff = {
             enabled = true,
