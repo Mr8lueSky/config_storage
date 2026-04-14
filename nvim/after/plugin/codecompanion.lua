@@ -1,19 +1,17 @@
 -- local default_ollama_model = "qwen3-coder:480b-cloud"
-
 if os.getenv("MODEL") then
     OLLAMA_MODEL = os.getenv("MODEL")
 else
-    OLLAMA_MODEL = "gpt-oss:120b-cloud"
-    -- OLLAMA_MODEL = "glm-5:cloud"
+    OLLAMA_MODEL = "glm-5.1:cloud"
+    -- OLLAMA_MODEL = "kimi-k2.5:cloud"
+    -- OLLAMA_MODEL = "qwen3-coder:480b-cloud"
 end
-
 
 if os.getenv("OLLAMA_HOST") then
     OLLAMA_HOST = os.getenv("OLLAMA_HOST")
 else
     OLLAMA_HOST = "0.0.0.0"
 end
-
 
 local explain_code = {
     interaction = "chat",
@@ -95,7 +93,7 @@ require("codecompanion").setup({
         }
     },
     chat = {
-      show_settings = true, -- Shows the model and adapter in the chat buffer
+        show_settings = true -- Shows the model and adapter in the chat buffer
     },
     adapters = {
         http = {
@@ -131,3 +129,5 @@ vim.keymap.set({'n', 'v'}, '<leader>ai', '<cmd>CodeCompanion<cr>',
 
 vim.keymap.set({'n', 'v'}, '<leader>ac', '<cmd>CodeCompanionActions<cr>',
                {desc = 'CodeCompanion Actions'})
+vim.keymap.set({'n', 'v'}, '<leader>aa', require('codecompanion').add,
+               {desc = 'CodeCompanion add selected text to chat'})

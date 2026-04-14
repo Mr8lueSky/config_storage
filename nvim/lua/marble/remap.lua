@@ -62,11 +62,25 @@ vim.keymap.set("n", "[o", open_diagnostic)
 vim.keymap.set("n", "]o", open_diagnostic)
 
 -- Show diagnostic messages in quickfix menu for current file
-vim.keymap.set("n", "[re", function () vim.diagnostic.setloclist({severity=vim.diagnostic.severity.ERROR}) end)
-vim.keymap.set("n", "]re", function () vim.diagnostic.setloclist({severity=vim.diagnostic.severity.ERROR}) end)
+vim.keymap.set("n", "[re", function()
+    vim.diagnostic.setloclist({severity = vim.diagnostic.severity.ERROR})
+end)
+vim.keymap.set("n", "]re", function()
+    vim.diagnostic.setloclist({severity = vim.diagnostic.severity.ERROR})
+end)
 
 vim.keymap.set("n", "[rd", vim.diagnostic.setloclist)
 vim.keymap.set("n", "]rd", vim.diagnostic.setloclist)
 
 -- Code actions
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+
+-- Line numbers in terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+        if vim.bo.buflisted then
+            vim.opt_local.number = true
+            vim.opt_local.relativenumber = true
+        end
+    end
+})
