@@ -20,8 +20,58 @@ export PATH="$PATH:/Users/skhulup/.dotnet/tools"
 alias ssh_init="eval \"$(ssh-agent)\"; ssh-add ~/.ssh/gitlab"
 alias nvimc="~/.nvimc.sh"
 alias pyformatters="ruff format; ruff check --fix --config ~/.ruff_conf; isort --multi-line 3 .;"
-alias stmux="tmux new-session nvim base.json +'Gvdiffsplit other.json' \; rename work \; new-window -c ~/projects/manual_per_services/scripts \; rename scripts \; new-window -c ~/projects/  \; attach"
+alias stmux="ssh_init; tmux new-session nvim base.json +'Gvdiffsplit other.json' \; rename work \; new-window -c ~/projects/manual_per_services/scripts \; rename scripts \; new-window -c ~/projects/  \; attach"
 alias project_init="python3.10 -m venv .venv; source .venv/bin/activate; poetry install; raf packages -a"
 alias v="nvim"
 alias svenv="[ -f venv/bin/activate ] && source venv/bin/activate || source .venv/bin/activate"
 alias ov="OLLAMA_HOST=192.168.1.86 MODEL=gpt-oss:20b nvim"
+alias ai="~/projects/manual_per_services/scripts/venv/bin/python3 ~/projects/manual_per_services/scripts/ai_cli.py"
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
