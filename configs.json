@@ -18,9 +18,5 @@
   "zsh_theme": {
     "dest_path": "~/.oh-my-zsh/themes/peepcode.zsh-theme",
     "path": "zsh-theme"
-  },
-  "ideavim": {
-    "dest_path": "~/.ideamirc",
-    "path": "ideavimrc"
   }
 }
