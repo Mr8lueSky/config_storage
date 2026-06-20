@@ -7,18 +7,6 @@
     "dest_path": "~/.zprofile",
     "path": "zprofile"
   },
-  "hyprland": {
-    "dest_path": "~/.config/hypr/",
-    "path": "hyprland"
-  },
-  "waybar": {
-    "dest_path": "~/.config/waybar/",
-    "path": "waybar"
-  },
-  "wofi": {
-    "dest_path": "~/.config/wofi/",
-    "path": "wofi"
-  },
   "zsh": {
     "dest_path": "~/.zshrc",
     "path": ".zshrc"
@@ -30,10 +18,6 @@
   "zsh_theme": {
     "dest_path": "~/.oh-my-zsh/themes/peepcode.zsh-theme",
     "path": "zsh-theme"
-  },
-  "albert": {
-    "dest_path": "~/.config/albert/config",
-    "path": "albert"
   },
   "ideavim": {
     "dest_path": "~/.ideamirc",
