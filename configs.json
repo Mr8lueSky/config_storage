@@ -7,10 +7,6 @@
     "dest_path": "~/.zprofile",
     "path": "zprofile"
   },
-  "zsh": {
-    "dest_path": "~/.zshrc",
-    "path": ".zshrc"
-  },
   "kitty": {
     "dest_path": "~/.config/kitty",
     "path": "kitty"
