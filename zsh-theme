@@ -23,7 +23,7 @@ git_mode() {
 
 git_dirty() {
   if [[ "$repo_path" != '.' && -n "$(command git ls-files -m)" ]]; then
-    echo " %{$fg_bold[white]%}✗%{$reset_color%}"
+    echo " %{$fg_bold[grey]%}✗%{$reset_color%}"
   fi
 }
 
@@ -31,17 +31,17 @@ git_prompt() {
   local cb=$(git_current_branch)
   if [[ -n "$cb" ]]; then
     local repo_path=$(git_repo_path)
-    echo " %{$FG[239]%}$cb %{$fg[white]%}$(git_commit_id)%{$reset_color%}$(git_mode)$(git_dirty)"
+    echo " %{$fg_bold[grey]%}$cb %{$fg[white]%}$(git_commit_id)%{$reset_color%}$(git_mode)$(git_dirty)"
   fi
 }
 
-local smiley='%(?.%F{green}+%f.%F{red}-%f)'
+local smiley='%(?.%F{green}☺%f.%F{red}☹%f)'
 
 PROMPT='
-(`basename ${VIRTUAL_ENV}%`) %~
+${VIRTUAL_ENV:+"($VIRTUAL_ENV) "}%~
 ${smiley}  '
 
-RPROMPT='%F{grey} $(ruby_prompt_info)$(git_prompt)%{$reset_color%}'
+RPROMPT='%F{white} $(ruby_prompt_info)$(git_prompt)%{$reset_color%}'
 
 # Disable automatic virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
