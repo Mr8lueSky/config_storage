@@ -1,10 +1,7 @@
--- local default_ollama_model = "qwen3-coder:480b-cloud"
 if os.getenv("MODEL") then
     OLLAMA_MODEL = os.getenv("MODEL")
 else
-    OLLAMA_MODEL = "glm-5.1:cloud"
-    -- OLLAMA_MODEL = "kimi-k2.5:cloud"
-    -- OLLAMA_MODEL = "qwen3-coder:480b-cloud"
+    OLLAMA_MODEL = "glm-5.2:cloud"
 end
 
 if os.getenv("OLLAMA_HOST") then
@@ -12,6 +9,8 @@ if os.getenv("OLLAMA_HOST") then
 else
     OLLAMA_HOST = "0.0.0.0"
 end
+
+O3_LLM_MODEL = "MiniMax-Coder"
 
 local explain_code = {
     interaction = "chat",
@@ -23,8 +22,6 @@ local explain_code = {
         }, {
             role = "user",
             content = function(context)
-                local text = require("codecompanion.helpers.actions").get_code(
-                                 context.start_line, context.end_line)
                 return "Please explain the following code:\n\n"
             end
         }
@@ -75,23 +72,18 @@ require("codecompanion").setup({
         ["Bash command"] = bash_command,
         ["Write docstring"] = write_docstring
     },
-    -- adapters = {chat = ollama, inline = ollama, actions = ollama},
-    -- interaction = {chat = ollama, inline = ollama, actions = ollama}
     interactions = {
         chat = {
-            -- You can specify an adapter by name and model (both ACP and HTTP)
-            adapter = {name = "ollama", model = OLLAMA_MODEL}
+            adapter = {name = "o3_llm", model = O3_LLM_MODEL}
         },
-        -- Or, just specify the adapter by name
         inline = {
-            -- You can specify an adapter by name and model (both ACP and HTTP)
-            adapter = {name = "ollama", model = OLLAMA_MODEL}
+            adapter = {name = "o3_llm", model = O3_LLM_MODEL}
         },
         cmd = {
-            -- You can specify an adapter by name and model (both ACP and HTTP)
-            adapter = {name = "ollama", model = OLLAMA_MODEL}
+            adapter = {name = "o3_llm", model = O3_LLM_MODEL}
         }
     },
+
     chat = {
         show_settings = true -- Shows the model and adapter in the chat buffer
     },
@@ -102,6 +94,25 @@ require("codecompanion").setup({
                     env = {url = "http://" .. OLLAMA_HOST .. ":11434"},
                     parameters = {sync = true}
                 })
+            end,
+            o3_llm = function()
+                -- Read API key from file
+                local token_file = io.open("/Users/skhulup/.o3_llm_token", "r")
+                local api_key = nil
+                if token_file then
+                    api_key = token_file:read("*a")
+                    token_file:close()
+                end
+                return require("codecompanion.adapters").extend(
+                           "openai_compatible", {
+                        env = {
+                            url = "https://llm-gateway-proton.t.o3.ru/api",
+                            api_key = api_key,
+                            chat_url = "/chat/completions",
+                            models_endpoint = "/models"
+                        },
+                        schema = {model = {default = O3_LLM_MODEL}}
+                    })
             end
         }
     },

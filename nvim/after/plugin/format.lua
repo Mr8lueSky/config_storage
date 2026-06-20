@@ -2,7 +2,9 @@
 vim.keymap.set("n", "<leader>f", function()
 	vim.cmd(":Neoformat")
 end)
-
+vim.g.neoformat_python_isort = {
+    args = {'--multi-line', 3}
+}
 vim.cmd([[
 	" let g:neoformat_python_ruffcheck = {
  "            \ 'exe': 'ruff',
