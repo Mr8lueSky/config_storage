@@ -5,7 +5,6 @@ return {
     -- example using opts for defining servers
     opts = {inlay_hints = {enabled = true}, servers = {lua_ls = {}}},
     config = function(_, opts)
-        local lspconfig = require('lspconfig')
         for server, config in pairs(opts.servers) do
             -- passing config.capabilities to blink.cmp merges with the capabilities in your
             -- `opts[server].capabilities, if you've defined it
