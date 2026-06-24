@@ -9,3 +9,6 @@ require("neotest").setup({
 })
 
 vim.keymap.set("n", "<leader>ts", ":Neotest summary\r\n")
+vim.keymap.set("n", "<leader>tr", ":Neotest run\r\n")
+vim.keymap.set("n", "<leader>tn", ":Neotest jump next\r\n")
+vim.keymap.set("n", "<leader>tp", ":Neotest jump prev\r\n")

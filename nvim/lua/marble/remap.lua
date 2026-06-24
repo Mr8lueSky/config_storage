@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 vim.keymap.set("n", "<C-q>", function() vim.cmd(":q") end)
 vim.keymap.set("n", "<leader>dd", '"_dd')
 
@@ -15,9 +15,6 @@ vim.cmd("nnoremap <C-l> <C-w>l")
 
 -- jk to enter normal mode from insert
 vim.keymap.set('i', 'jk', '<Esc>', {noremap = true})
-
--- paste without yanking
-vim.cmd('vnoremap <leader>o "_dp')
 
 -- Exit terminal on ctrl + x
 vim.cmd(":tnoremap <C-x> <C-\\><C-n>")
