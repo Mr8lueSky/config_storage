@@ -63,6 +63,10 @@ local write_docstring = {
         }
     }
 }
+
+-- local default_model = {adapter = {name = "o3_llm", model = O3_LLM_MODEL}}
+local default_model = {adapter = {name = "ollama", model = OLLAMA_MODEL}}
+
 require("codecompanion").setup({
     prompt_library = {
         markdown = {
@@ -73,15 +77,9 @@ require("codecompanion").setup({
         ["Write docstring"] = write_docstring
     },
     interactions = {
-        chat = {
-            adapter = {name = "o3_llm", model = O3_LLM_MODEL}
-        },
-        inline = {
-            adapter = {name = "o3_llm", model = O3_LLM_MODEL}
-        },
-        cmd = {
-            adapter = {name = "o3_llm", model = O3_LLM_MODEL}
-        }
+        chat = default_model,
+        inline = default_model,
+        cmd = default_model
     },
 
     chat = {

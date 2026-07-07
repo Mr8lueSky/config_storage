@@ -5,7 +5,7 @@ return {
         automatic_enable = {
             exclude = {
                 "basedpyright", "jedi-language-server", "roslyn_ls", "emmet_ls",
-                "roslyn_ls"
+                "roslyn_ls", "ty"
             }
         }
     },

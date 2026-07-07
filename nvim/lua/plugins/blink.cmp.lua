@@ -29,7 +29,8 @@ return {
             preset = "default",
             ["<Tab>"] = {"select_and_accept", 'fallback'},
             ['<C-Tab>'] = {'select_prev', 'fallback'},
-            ['<S-Tab>'] = {'select_next', 'fallback'}
+            ['<S-Tab>'] = {'select_next', 'fallback'},
+	    ['<M-s>'] = { 'show_signature', 'hide_signature', 'fallback' }
         },
 
         appearance = {
@@ -51,6 +52,9 @@ return {
         --
         -- See the fuzzy documentation for more information
         fuzzy = {implementation = "prefer_rust_with_warning"},
+        signature = {
+            enabled = true,
+        }
 
     },
     opts_extend = {"sources.default"}
