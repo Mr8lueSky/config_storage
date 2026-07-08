@@ -2932,9 +2932,3 @@
 map cmd+s send_text all \x13 # \x13 is Ctrl+S
 macos_option_as_alt yes
 map alt+r no_op
-
-
-# BEGIN_KITTY_THEME
-# Kanagawa_dragon
-include current-theme.conf
-# END_KITTY_THEME
