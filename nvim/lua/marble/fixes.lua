@@ -6,3 +6,4 @@ vim.cmd[[
 vim.opt.shell = "zsh -l"
 
 vim.opt.hidden = true
+vim.opt.splitright = true

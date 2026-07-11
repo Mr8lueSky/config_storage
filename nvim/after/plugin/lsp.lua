@@ -3,7 +3,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- vim.lsp.enable("ts_ls")
 vim.lsp.config("ts_ls",
-               {workspace_required = true, root_markers = {"package.json"}})
+    { workspace_required = true, root_markers = { "package.json" } })
 vim.lsp.enable("rust_analyzer")
 
 -- Python
@@ -11,7 +11,7 @@ vim.lsp.enable("basedpyright")
 vim.lsp.config('basedpyright', {
     root_markers = {
         "pyproject.toml", "setup.py", "setup.cfg", ".git", ".venv", "venv"
-    },
+    }
     -- settings = {
     --     basedpyright = {
     --         analysis = {configFilePath = "~/projects/manual_per_services/base/pyrightconfig.json"}
@@ -48,11 +48,11 @@ vim.lsp.config('basedpyright', {
 --   }
 -- })
 
--- Keybinds
+vim.lsp.inlay_hint.enable()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Keybinds
-vim.diagnostic.config({jump = {float = true}})
+vim.diagnostic.config({ jump = { float = true } })
 
 vim.keymap.set("n", "]e", function()
     vim.diagnostic.jump({
@@ -71,17 +71,17 @@ vim.keymap.set("n", "[e", function()
 end)
 
 vim.keymap.set("n", "[g",
-               function() vim.diagnostic.jump({count = -1, wrap = true}) end)
+    function() vim.diagnostic.jump({ count = -1, wrap = true }) end)
 
 vim.keymap.set("n", "]g",
-               function() vim.diagnostic.jump({count = 1, wrap = true}) end)
+    function() vim.diagnostic.jump({ count = 1, wrap = true }) end)
 
 -- Show diagnostic messages
 vim.keymap.set("n", "<leader>ls", vim.diagnostic.setloclist)
 -- Clear diagnostic
-vim.keymap.set("n", "<leader>lc", function ()
-	vim.fn.setloclist(0, {})
-	vim.cmd(":lclose")
+vim.keymap.set("n", "<leader>lc", function()
+    vim.fn.setloclist(0, {})
+    vim.cmd(":lclose")
 end)
 
 -- Next/Previous quick fix
@@ -95,4 +95,3 @@ vim.keymap.set("n", "<C-p>", function()
 end)
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-

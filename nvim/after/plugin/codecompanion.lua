@@ -64,8 +64,8 @@ local write_docstring = {
     }
 }
 
--- local default_model = {adapter = {name = "o3_llm", model = O3_LLM_MODEL}}
-local default_model = {adapter = {name = "ollama", model = OLLAMA_MODEL}}
+local default_model = {adapter = {name = "o3_llm", model = O3_LLM_MODEL}}
+-- local default_model = {adapter = {name = "ollama", model = OLLAMA_MODEL}}
 
 require("codecompanion").setup({
     prompt_library = {

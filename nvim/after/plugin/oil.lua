@@ -1,6 +1,10 @@
 local oil = require("oil")
 
-oil.setup({win_options = {signcolumn = "yes:2"}})
+oil.setup({
+    win_options = {signcolumn = "yes:2"},
+    keymaps = {["<C-l>"] = false, ["<C-r>"] = "actions.refresh"}
+})
+
 -- Copy absolute path of the file under the cursor
 vim.keymap.set("n", "<leader>y", function()
     local dir = oil.get_current_dir()

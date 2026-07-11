@@ -5,7 +5,8 @@ require("marble.fixes")
 vim.cmd("set rnu")
 vim.cmd("set number")
 vim.cmd("setlocal spell spelllang=en_us,ru")
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.o.clipboard = "unnamedplus"
+
 -- allow netrw to copy files to same directory 
 -- vim.o.exrc = true
 vim.cmd [[
@@ -13,3 +14,15 @@ vim.cmd [[
 	let g:netrw_bufsettings="rnu"
 ]]
 vim.opt.exrc = true
+vim.o.winborder = "rounded"
+
+
+vim.keymap.set('n', '<leader>ie', function()
+  local config = vim.diagnostic.config() or {}
+  local virt_text = config.virtual_text
+  vim.diagnostic.config({ virtual_text = not virt_text })
+end, { desc = "Toggle diagnostic virtual text" })
+
+vim.keymap.set("n", "<leader>ih", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
