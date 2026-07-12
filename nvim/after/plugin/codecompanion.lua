@@ -1,14 +1,6 @@
-if os.getenv("MODEL") then
-    OLLAMA_MODEL = os.getenv("MODEL")
-else
-    OLLAMA_MODEL = "glm-5.2:cloud"
-end
+OLLAMA_MODEL = os.getenv("MODEL") or "glm-5.2:cloud"
 
-if os.getenv("OLLAMA_HOST") then
-    OLLAMA_HOST = os.getenv("OLLAMA_HOST")
-else
-    OLLAMA_HOST = "0.0.0.0"
-end
+OLLAMA_HOST = os.getenv("OLLAMA_HOST") or "0.0.0.0"
 
 O3_LLM_MODEL = "MiniMax-Coder"
 
@@ -124,7 +116,10 @@ require("codecompanion").setup({
                 'internal', 'filler', 'closeoff', 'algorithm:patience',
                 'followwrap', 'linematch:120'
             },
-            provider = 'default' -- default|mini_diff
+            provider = 'telescope' -- default|mini_diff
+        },
+        action_palette = {
+            provider = "telescope" -- Can also be mini_pick or snacks
         }
     }
 })

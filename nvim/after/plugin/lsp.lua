@@ -7,37 +7,38 @@ vim.lsp.config("ts_ls",
 vim.lsp.enable("rust_analyzer")
 
 -- Python
+
 vim.lsp.enable("basedpyright")
 vim.lsp.config('basedpyright', {
     root_markers = {
         "pyproject.toml", "setup.py", "setup.cfg", ".git", ".venv", "venv"
     }
-    -- settings = {
-    --     basedpyright = {
-    --         analysis = {configFilePath = "~/projects/manual_per_services/base/pyrightconfig.json"}
-    --     }
-    -- }
-    -- capabilities = {
-    --     textDocument = {
-    --         completion = false,
-    --         hover = false,
-    --         signatureHelp = false,
-    --         definition = false,
-    --  definitionProvider = false,
-    --         references = false,
-    --         documentHighlight = false,
-    --         rename = false,
-    --         formatting = false,
-    --         rangeFormatting = false
-    --     }
-    -- },
-    -- handlers = {
-    --        ['textDocument/publishDiagnostics'] = function() end, -- disable diagnostics
-    -- ["textDocument/definition"] = function() end,
-    -- }
 })
 
+
 -- vim.lsp.enable("ty")
+-- vim.lsp.config('ty', {
+--     root_markers = {
+--         "pyproject.toml", "setup.py", "setup.cfg", ".git", ".venv", "venv"
+--     },
+--     settings = {
+--         ty = {
+--             inlayHints = {
+--                 variableTypes = true,
+--                 callArgumentNames = true,
+--             },
+--             completions = {
+--                 autoImport = true,
+--                 completeFunctionParentheses = false,
+--             },
+--             diagnosticMode = "openFilesOnly",
+--             showSyntaxErrors = true,
+--         },
+--     },
+-- })
+
+
+
 -- vim.lsp.enable("ruff")
 -- vim.lsp.config('ruff', {
 --   init_options = {
