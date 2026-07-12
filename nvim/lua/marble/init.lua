@@ -27,3 +27,5 @@ end, { desc = "Toggle diagnostic virtual text" })
 vim.keymap.set("n", "<leader>ih", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
+
+vim.keymap.set("n", ":", "q:i", { desc = "Open command-line window" })
