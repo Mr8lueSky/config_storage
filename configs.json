@@ -14,5 +14,9 @@
   "zsh_theme": {
     "dest_path": "~/.oh-my-zsh/themes/peepcode.zsh-theme",
     "path": "zsh-theme"
+  },
+  "tmux": {
+    "dest_path": "~/.tmux.conf",
+    "path": "tmux"
   }
 }
