@@ -1,6 +1,7 @@
 require("marble.autocomplete")
 require("marble.remap")
 require("marble.fixes")
+require("marble.helpers")
 
 vim.cmd("set rnu")
 vim.cmd("set number")

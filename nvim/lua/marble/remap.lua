@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 vim.keymap.set("n", "<C-q>", function() vim.cmd(":q") end)
+vim.keymap.set("n", "<C-e>", function() vim.cmd(":w") end)
 vim.keymap.set("n", "<leader>dd", '"_dd')
 
 -- ctrl + backspace in insert mode to delete whole words
@@ -66,9 +67,6 @@ vim.keymap.set("n", "]re", function()
     vim.diagnostic.setloclist({severity = vim.diagnostic.severity.ERROR})
 end)
 
-vim.keymap.set("n", "[rd", vim.diagnostic.setloclist)
-vim.keymap.set("n", "]rd", vim.diagnostic.setloclist)
-
 -- Code actions
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
@@ -81,3 +79,4 @@ vim.api.nvim_create_autocmd("TermOpen", {
         end
     end
 })
+

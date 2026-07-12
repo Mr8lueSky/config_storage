@@ -1,8 +1,6 @@
 local neotest = require("neotest")
 
-local root_dir = vim.fn.getcwd()
-
-neotest.setup({
+DEFAULT_NEOTEST_CONFIG = {
     adapters = {
         require("neotest-python")({
             dap = {justMyCode = false},
@@ -15,7 +13,9 @@ neotest.setup({
     },
     quickfix = {enabled = true, open = false},
     status = {virtual_text = true, signs = false}
-})
+}
+
+neotest.setup(DEFAULT_NEOTEST_CONFIG)
 
 vim.keymap.set("n", "<leader>ts", ":Neotest summary\r\n")
 vim.keymap.set("n", "<leader>tr", ":Neotest run\r\n")
