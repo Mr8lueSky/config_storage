@@ -2,7 +2,7 @@ OLLAMA_MODEL = os.getenv("MODEL") or "glm-5.2:cloud"
 
 OLLAMA_HOST = os.getenv("OLLAMA_HOST") or "0.0.0.0"
 
-O3_LLM_MODEL = "MiniMax-Coder"
+O3_LLM_MODEL = "AgentLLM-big"
 
 local explain_code = {
     interaction = "chat",

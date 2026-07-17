@@ -71,7 +71,6 @@ require("dapui").setup({
 		max_value_lines = 100,
 	},
 })
-require("dap-python").setup("python3")
 
 vim.keymap.set("n", "<leader>dt", require("dapui").toggle)
 vim.keymap.set("n", "<leader>da", require("dap").toggle_breakpoint)

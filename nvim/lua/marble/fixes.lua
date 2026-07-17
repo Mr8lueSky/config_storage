@@ -1,9 +1,10 @@
--- allow netrw to copy files to same directory 
-vim.cmd[[
-	" let g:netrw_keepdir=0
-	set noswapfile
-]]
-vim.opt.shell = "zsh -l"
+vim.o.shell = "zsh -l"
 
-vim.opt.hidden = true
-vim.opt.splitright = true
+vim.o.hidden = true
+vim.o.splitright = true
+
+
+vim.o.hlsearch = true
+vim.o.incsearch = true
+vim.o.inccommand = 'split'
+
