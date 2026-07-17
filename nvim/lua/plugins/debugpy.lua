@@ -1,1 +1,0 @@
-return {"HiPhish/debugpy.nvim"}

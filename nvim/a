@@ -1,1 +1,0 @@
-string.find(vim.api.nvim_buf_get_name(10), "term", 1, true)
