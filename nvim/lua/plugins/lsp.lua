@@ -64,57 +64,9 @@ return {
         --   }
         -- })
 
-        vim.lsp.inlay_hint.enable()
+        -- vim.lsp.inlay_hint.enable()
         capabilities.textDocument.completion.completionItem.snippetSupport =
             true
-
-        -- Keybinds
-        vim.diagnostic.config({jump = {float = true}})
-
-        vim.keymap.set("n", "]e", function()
-            vim.diagnostic.jump({
-                count = 1,
-                severity = vim.diagnostic.severity.ERROR,
-                wrap = true
-            })
-        end)
-
-        vim.keymap.set("n", "[e", function()
-            vim.diagnostic.jump({
-                count = -1,
-                severity = vim.diagnostic.severity.ERROR,
-                wrap = true
-            })
-        end)
-
-        vim.keymap.set("n", "[g", function()
-            vim.diagnostic.jump({count = -1, wrap = true})
-        end)
-
-        vim.keymap.set("n", "]g", function()
-            vim.diagnostic.jump({count = 1, wrap = true})
-        end)
-
-        -- Show diagnostic messages
-        vim.keymap.set("n", "<leader>ls", vim.diagnostic.setloclist)
-        -- Clear diagnostic
-        vim.keymap.set("n", "<leader>lc", function()
-            vim.fn.setloclist(0, {})
-            vim.cmd(":lclose")
-        end)
-
-        -- Next/Previous quick fix
-        vim.keymap.set("n", "<C-n>", function()
-            pcall(vim.cmd, "cnext")
-            pcall(vim.cmd, "lne")
-        end)
-        vim.keymap.set("n", "<C-p>", function()
-            pcall(vim.cmd, "cprevious")
-            pcall(vim.cmd, "lp")
-        end)
-
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-
     end
 
     -- example calling setup directly for each LSP

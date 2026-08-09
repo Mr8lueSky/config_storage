@@ -14,8 +14,21 @@ vim.cmd("nnoremap <C-j> <C-w>j")
 vim.cmd("nnoremap <C-k> <C-w>k")
 vim.cmd("nnoremap <C-l> <C-w>l")
 
+-- close window on
+for _, l in ipairs({"j", "h", "k", "l"}) do
+    vim.keymap.set("n", "<leader>w" .. l, function()
+        local current_win = vim.api.nvim_get_current_win();
+        vim.cmd('wincmd ' .. l)
+        if vim.api.nvim_get_current_win() == current_win then return end
+        vim.cmd('close')
+    end)
+end
+
 -- jk to enter normal mode from insert
 vim.keymap.set('i', 'jk', '<Esc>', {noremap = true})
+
+-- vertical split on ctrl + s
+vim.keymap.set('n', '<C-s>', ':vsplit<CR>', {noremap = true})
 
 -- Exit terminal on ctrl + x
 vim.cmd(":tnoremap <C-x> <C-\\><C-n>")
@@ -34,13 +47,11 @@ vim.keymap.set("n", "<leader>tv", function()
     vim.api.nvim_set_current_win(win_id)
     vim.cmd(":terminal")
 end)
-
--- Execute cmd in vertical terminal on space + t + e
-vim.keymap.set("n", "<leader>te", function()
-    local win_id = vim.api.nvim_get_current_win();
-    local cmd = vim.fn.input("Cmd: ", "", "shellcmd");
-    local cmd_vim = string.format(":terminal %s", cmd);
-    vim.cmd(":vsplit")
+vim.keymap.set("n", "<leader>ti", function()
+    local win_id = vim.api.nvim_get_current_win()
+    local cmd = vim.fn.input("Cmd: ", "", "shellcmd")
+    local cmd_vim = string.format(':terminal %s; $SHELL', cmd)
+    vim.cmd(":split")
     vim.api.nvim_set_current_win(win_id)
     vim.cmd(cmd_vim)
 end)
@@ -68,7 +79,7 @@ vim.keymap.set("n", "]re", function()
 end)
 
 -- Code actions
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", ".g", vim.lsp.buf.code_action)
 
 -- Line numbers in terminal
 vim.api.nvim_create_autocmd("TermOpen", {

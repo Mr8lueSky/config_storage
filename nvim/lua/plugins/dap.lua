@@ -68,7 +68,8 @@ return {
                 type = "python",
                 request = "attach",
                 name = "attach",
-                connect = {host = "127.0.0.1", port = 5678}
+                connect = {host = "127.0.0.1", port = 5678},
+                exclude = {"**/neotest-python/neotest.py"}
             }
         }
 
@@ -108,6 +109,15 @@ return {
         dap.listeners.before.event_exited.dapui_config = function()
             dapui.close()
         end
+
+        -- block undo
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = { "dap-repl", "dapui_scopes", "dapui_stacks", "dapui_breakpoints", "dapui_watches", "dapui_console" },
+            callback = function()
+                vim.bo.undolevels = -1
+            end,
+        })
+
 
         -- Keymaps
         vim.keymap.set("n", "<leader>dt",

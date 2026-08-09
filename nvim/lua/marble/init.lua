@@ -2,6 +2,7 @@ require("marble.autocomplete")
 require("marble.remap")
 require("marble.fixes")
 require("marble.helpers")
+require("marble.keymaps")
 
 vim.cmd("set rnu")
 vim.cmd("set number")
@@ -24,7 +25,4 @@ vim.keymap.set('n', '<leader>ie', function()
   vim.diagnostic.config({ virtual_text = not virt_text })
 end, { desc = "Toggle diagnostic virtual text" })
 
-vim.keymap.set("n", "<leader>ih", function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end)
 

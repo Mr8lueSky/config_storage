@@ -16,7 +16,10 @@ return {
                         "--log-level", "DEBUG", "-n", "logical", "--alluredir",
                         "allure", "--clean-alluredir"
                     },
-                    runner = "pytest"
+                    runner = "pytest",
+                    rules = {
+                        {path = "**/neotest-python/**", include = false},
+                    }
                 })
             },
             quickfix = {enabled = true, open = false},
@@ -24,6 +27,9 @@ return {
         }
 
         neotest.setup(DEFAULT_NEOTEST_CONFIG)
+
+        -- Fix aio issue, when a lot of tests a ran
+        package.loaded["neotest.client.strategies.integrated"] = require("fix.neotest")
 
         vim.keymap.set("n", "<leader>ts", ":Neotest summary\r\n")
         vim.keymap.set("n", "<leader>tr", ":Neotest run\r\n")
