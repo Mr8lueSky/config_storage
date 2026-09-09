@@ -44,5 +44,7 @@ return {
         end
     end)
 
+    vim.keymap.set("n", "<leader>fr", function() vim.cmd("!echo % | pbcopy") end)
+
     end
 }

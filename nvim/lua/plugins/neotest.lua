@@ -17,9 +17,7 @@ return {
                         "allure", "--clean-alluredir"
                     },
                     runner = "pytest",
-                    rules = {
-                        {path = "**/neotest-python/**", include = false},
-                    }
+                    rules = {{path = "**/neotest-python/**", include = false}}
                 })
             },
             quickfix = {enabled = true, open = false},
@@ -29,7 +27,8 @@ return {
         neotest.setup(DEFAULT_NEOTEST_CONFIG)
 
         -- Fix aio issue, when a lot of tests a ran
-        package.loaded["neotest.client.strategies.integrated"] = require("fix.neotest")
+        package.loaded["neotest.client.strategies.integrated"] = require(
+                                                                     "fix.neotest")
 
         vim.keymap.set("n", "<leader>ts", ":Neotest summary\r\n")
         vim.keymap.set("n", "<leader>tr", ":Neotest run\r\n")
@@ -44,6 +43,13 @@ return {
                 vim.fn.jobstop(allure_job_id)
             end
             allure_job_id = vim.fn.jobstart("allure serve allure")
+        end)
+
+        vim.keymap.set("n", "<leader>aw", function()
+            if allure_job_id ~= nil then
+                vim.fn.jobstop(allure_job_id)
+            end
+            allure_job_id = vim.fn.jobstart("allure watch allure")
         end)
 
     end

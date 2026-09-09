@@ -30,6 +30,16 @@ return {
             root_markers = {
                 "pyproject.toml", "setup.py", "setup.cfg", ".git", ".venv",
                 "venv"
+            },
+            settings = {
+                basedpyright = {
+                    analysis = {
+                        -- Forces background indexing across the workspace
+                        diagnosticMode = "workspace",
+                        -- Helps index symbols inside external libraries/dependencies
+                        useLibraryCodeForTypes = true
+                    }
+                }
             }
         })
 

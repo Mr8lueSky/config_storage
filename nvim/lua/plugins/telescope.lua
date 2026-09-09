@@ -44,5 +44,10 @@ return {
         -- load_extension, somewhere after setup function:
         require("telescope").load_extension("ui-select")
 
+        vim.keymap.set("n", "<leader>pd", function()
+            require('telescope.builtin').lsp_workspace_symbols({
+                symbols = {'Function', 'Method'}
+            })
+        end)
     end
 }

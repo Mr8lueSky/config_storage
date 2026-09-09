@@ -23,7 +23,8 @@ vim.opt.splitright = true
 vim.opt.shell = "zsh -l"
 
 -- Sessions
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions =
+    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- netrw
 vim.g.netrw_bufsettings = "rnu"
